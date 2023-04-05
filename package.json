@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/pdaambrosio/rock_paper_scissor_nodejs/issues"
   },
-  "homepage": "https://github.com/pdaambrosio/rock_paper_scissor_nodejs#readme"
+  "homepage": "https://github.com/pdaambrosio/rock_paper_scissor_nodejs#readme",
+  "dependencies": {
+    "inquirer": "^9.1.5"
+  }
 }
