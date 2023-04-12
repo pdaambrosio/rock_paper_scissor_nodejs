@@ -35,7 +35,6 @@ module.exports = class rockPaperScissor {
   async compete(gameOption) {
     let player1Label = "";
     let player1Move = "";
-    let result = "";
     let computerMove = this.randomMove();
     if (gameOption === "PlayerVsComputer") {
       player1Move = await this.getUserMove();
@@ -58,6 +57,50 @@ module.exports = class rockPaperScissor {
 
   getWinner(player1Move, computerMove, player1Label) {
     let winner = "";
-  #TODO: Add logic to determine the winner
+
+    try {
+      if (player1Move === computerMove) {
+        winner = "Draw";
+      }
+
+      switch (player1Move) {
+        case "Rock":
+          if (computerMove === "Paper") {
+            winner = "Computer";
+          } else {
+            winner = player1Label;
+          }
+          break;
+        case "Paper":
+          if (computerMove === "Scissor") {
+            winner = "Computer";
+          } else {
+            winner = player1Label;
+          }
+          break;
+        case "Scissor":
+          if (computerMove === "Rock") {
+            winner = "Computer";
+          } else {
+            winner = player1Label;
+          }
+      }
+    } catch (error) {
+      console.log("Something went wrong. Please try again.");
+    }
+
+    return new Promise((resolve) => {
+      resolve(winner);
+    });
+  }
+
+  printResult(winner, player1Label, player1Move, computerMove) {
+    console.log(
+      `Winner: ${winner}. ${player1Label} chose ${player1Move}. Computer chose ${computerMove}`
+    );
+  }
+
+  randomMove() {
+    return this.choices[Math.floor(Math.random() * this.choices.length)];
   }
 };
