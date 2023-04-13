@@ -1,8 +1,8 @@
-const inquirer = require("inquirer");
+import { createPromptModule } from "inquirer";
 
-module.exports = class rockPaperScissor {
+export default class rockPaperScissor {
   constructor() {
-    this.prompt = inquirer.createPromptModule();
+    this.prompt = createPromptModule();
     this.choices = ["Rock", "Paper", "Scissor"];
   }
 
@@ -103,4 +103,21 @@ module.exports = class rockPaperScissor {
   randomMove() {
     return this.choices[Math.floor(Math.random() * this.choices.length)];
   }
-};
+
+  async getUserMove(gameOption) {
+    let answer = await this.prompt({
+      type: "list",
+      name: "userMove",
+      message: "Choose your move",
+      choices: [
+        { name: "Rock", value: "Rock" },
+        { name: "Paper", value: "Paper" },
+        { name: "Scissor", value: "Scissor" },
+      ],
+    });
+
+    return new Promise((resolve) => {
+      resolve(answer.userMove);
+    });
+  }
+}

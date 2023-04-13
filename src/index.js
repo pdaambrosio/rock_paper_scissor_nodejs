@@ -1,3 +1,3 @@
-const rockPaperScissor = require("./rockPaperScissor");
+import rockPaperScissor from "./rockPaperScissor.js";
 const game = new rockPaperScissor();
-game.startGame();
+game.start();
